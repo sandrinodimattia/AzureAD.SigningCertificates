@@ -1,0 +1,37 @@
+﻿@model List<System.IdentityModel.Tokens.X509SecurityToken>
+
+    @{
+        ViewBag.Title = "Azure AD - Signing Certificates";
+    }
+
+    <div class="jumbotron">
+        <h1>Azure AD - Signing Certificates</h1>
+        <p>This page shows the current signing certificates for all Azure AD tenants.</p>
+        <p><a href="https://msdn.microsoft.com/en-us/library/azure/dn641920.aspx" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th>Issuer</th>
+                        <th>Thumbprint</th>
+                        <th>Not Before</th>
+                        <th>Not After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var key in Model)
+                {
+                    <tr>
+                        <td>@key.Certificate.Issuer</td>
+                        <td>@key.Certificate.Thumbprint</td>
+                        <td>@key.Certificate.NotBefore.ToString("yyyy-MM-dd")</td>
+                        <td>@key.Certificate.NotAfter.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
